@@ -25,23 +25,23 @@ router.post('/add', async (req: Request, res: Response) => {
     let c = new Channel();
     c.name = channel.name;
     c.number = channel.number;
-    c.events = channel.events.map((event: any) => {
-        let p = new Event();
-        p.name = event.name;
-        p.channelNo = channel.number;
-        return p;
-    });
+    // c.events = channel.events.map((event: any) => {
+    //     let p = new Event();
+    //     p.name = event.name;
+    //     p.channelNo = channel.number;
+    //     return p;
+    // });
     let response = await getEntityManager().create(c);
     let id = response.id;
-    // console.log(response);
-    // for (let i = 0; i < channel.events.length; i++) {
-    //     let p = new Event();
-    //     p.id = id;
-    //     p.name = channel.events[i].name;
-    //     p.channelNo = channel.number;
-    //     const response = await getEntityManager().create(p);
-    //     console.log(response);
-    // }
+    console.log(response);
+    for (let i = 0; i < channel.events.length; i++) {
+        let p = new Event();
+        p.id = id;
+        p.name = channel.events[i].name;
+        p.channelNo = channel.number;
+        const response = await getEntityManager().create(p);
+        console.log(response);
+    }
 
 
     console.log(response);

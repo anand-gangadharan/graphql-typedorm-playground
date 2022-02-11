@@ -16,9 +16,7 @@ const { OK } = StatusCodes;
  ******************************************************************************/
 
 router.get('/all', async (req: Request, res: Response) => {
-  let users = await getEntityManager().find(User, { id: "cb2afaf1-d4e5-460d-a2fb-6663a637650d", name: "Anand" })
-  console.log(users)
-  res.status(OK).json({ "users": users.items });
+  res.status(OK).json({});
 });
 
 router.post('/add', async (req: Request, res: Response) => {
