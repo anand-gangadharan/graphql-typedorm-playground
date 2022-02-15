@@ -6,15 +6,12 @@ import { getEntityManager } from '@typedorm/core';
 
 const router = Router();
 const { OK } = StatusCodes;
-
-
-
 /******************************************************************************
  *                      Get All Users - "GET /api/users/all"
  ******************************************************************************/
 
 router.get('/all', async (req: Request, res: Response) => {
-  let users = await getEntityManager().find(User, { id: "cdae3e49-b283-40c0-ab04-8ccef3eb7794", name: "Anand" })
+  let users = await getEntityManager().find(User, { id: "148a3fed-ca46-4c74-8b7f-a523da9d9bf9", name: "Tresa" })
   console.log(users)
   res.status(OK).json({ "users": users.items });
 });

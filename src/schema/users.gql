@@ -1,0 +1,24 @@
+ type User{
+    name: String
+    id: String
+    email:String
+        
+  }
+  type Query {
+    user(id: ID!): [User]
+  }
+  type Status{
+    statusCode: Int
+    statusMessage: String
+  }
+
+  input InputUser{    
+    name: String
+    email: String 
+  }   
+
+  type Mutation{
+    createUser(input: InputUser!): User! 
+    updateUser(input: InputUser!): Status!
+    deleteInUser(input: InputUser!): Status!
+  }
