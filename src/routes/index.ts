@@ -7,7 +7,7 @@ import ChannelsRouter from './Channels';
 const router = Router();
 
 // Add sub-routes
-// router.use('/users', UserRouter);
+router.use('/users', UserRouter);
 router.use('/series', SeriesRouter);
 router.use('/channels', ChannelsRouter);
 

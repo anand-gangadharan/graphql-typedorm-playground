@@ -5,11 +5,13 @@
 displayUsers();
 
 
-function displayUsers() {
-    httpGet('/api/users/all')
-        .then(response => response.json())
-        .then((response) => {
-            var allUsers = response.users;
+function displayUsers() {    
+    httpGet('/api/users/allUser')
+        .then(response => (response.json()))
+        .then((response) => {    
+            console.log(response)        
+            var allUsers = response.users;            
+            console.log(response)
             // Empty the anchor
             var allUsersAnchor = document.getElementById('all-users-anchor');
             allUsersAnchor.innerHTML = '';
@@ -17,7 +19,7 @@ function displayUsers() {
             allUsers.forEach((user) => {
                 allUsersAnchor.innerHTML += getUserDisplayEle(user);
             });
-        });
+        })
 };
 
 
