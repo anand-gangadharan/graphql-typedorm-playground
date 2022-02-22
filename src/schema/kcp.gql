@@ -1,0 +1,17 @@
+type KCPInfo{
+  contentId:String
+  doc_type:String
+  name:String
+  resourceId:String
+  userId:String
+  operation:String
+  updatedAt:String
+  configurationKey:String
+  configurationKeyType:String
+  progress:String
+  success:Boolean
+
+}
+type Query {
+    getKCPInfo(id: ID!): [KCPInfo]
+}

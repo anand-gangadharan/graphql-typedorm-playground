@@ -6,6 +6,6 @@
 
 import Logger from 'jet-logger';
 
-const logger = new Logger();
+const logger = Logger;
 
 export default logger;

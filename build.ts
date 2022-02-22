@@ -7,7 +7,7 @@ import Logger from 'jet-logger';
 import childProcess from 'child_process';
 
 // Setup logger
-const logger = new Logger();
+const logger = Logger;
 logger.timestamp = false;
 
 (async () => {

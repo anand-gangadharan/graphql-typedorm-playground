@@ -1,25 +1,25 @@
 {
-  "TableName": "dynamodb-sample-table",
+  "TableName": "KCP",
   "KeySchema": [
     { "AttributeName": "PK", "KeyType": "HASH" },
     { "AttributeName": "SK", "KeyType": "RANGE" }
   ],
   "ProvisionedThroughput": {
-    "ReadCapacityUnits": 5,
-    "WriteCapacityUnits": 5
+    "ReadCapacityUnits": 1,
+    "WriteCapacityUnits": 1
   },
   "GlobalSecondaryIndexes": [
     {
       "IndexName": "GSI1",
       "KeySchema": [
-        { "AttributeName": "GSI1PK", "KeyType": "HASH" },
-        { "AttributeName": "GSI1SK", "KeyType": "RANGE" }
+        { "AttributeName": "PK1", "KeyType": "HASH" },
+        { "AttributeName": "SK1", "KeyType": "RANGE" }
       ],
       "Projection": {
         "ProjectionType": "ALL"
       },
       "ProvisionedThroughput": {
-        "ReadCapacityUnits": 5,
+        "ReadCapacityUnits": 1,
         "WriteCapacityUnits": 1
       }
     }
@@ -27,7 +27,7 @@
   "AttributeDefinitions": [
     { "AttributeName": "PK", "AttributeType": "S" },
     { "AttributeName": "SK", "AttributeType": "S" },
-    { "AttributeName": "GSI1PK", "AttributeType": "S" },
-    { "AttributeName": "GSI1SK", "AttributeType": "S" }
+    { "AttributeName": "PK1", "AttributeType": "S" },
+    { "AttributeName": "SK1", "AttributeType": "S" }
   ]
 }

@@ -1,15 +1,14 @@
 import { INDEX_TYPE, Table } from '@typedorm/common';
 
 export const dynamoDBSampleAppTable = new Table({
-  name: 'dynamodb-sample-table',
+  name: 'KCP',
   partitionKey: 'PK',
   sortKey: 'SK',
   indexes: {
     GSI1: {
-      partitionKey: 'GSI1PK',
-      sortKey: 'GSI1SK',
+      partitionKey: 'PK1',
+      sortKey: 'SK1',
       type: INDEX_TYPE.GSI,
     },
   },
 });
-
