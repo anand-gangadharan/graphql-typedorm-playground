@@ -4,9 +4,12 @@ import app from '@server';
 import logger from '@shared/Logger';
 import { createConnection } from '@typedorm/core';
 import { dynamoDBSampleAppTable } from './table'
-import  createUser  from './resolvers/users';
+import mergedResolvers from './resolvers'
+//import { createUser, getUser } from './resolvers/users';
 import path from 'path';
 import { ApolloError, ApolloServer, gql } from "apollo-server";
+import schema from './schema';
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 var AWS = require('aws-sdk');
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -14,49 +17,17 @@ AWS.config.update({ endpoint: new AWS.Endpoint('http://localhost:8000'), region:
 
 
 
-const typeDefs = gql ` type User{
-  name: String
-  id: String
-  email:String
-      
-}
-type Query {
-  user(id: ID!): [User]
-}
-type Status{
-  statusCode: Int
-  statusMessage: String
-}
-
-input InputUser{    
-  name: String
-  email: String 
-}   
-
-type Mutation{
-  createUser(input: InputUser!): Status! 
-  updateUser(input: InputUser!): Status!
-  deleteInUser(input: InputUser!): Status!
-}`
-
+const typeDefs = schema;
 
 // Provide resolver functions for your schema fields
-const resolvers = {
-    Query: {      
-
-        },   
-
-    Mutation: {
-      createUser  
-           
-    }
-  };
+console.log(mergedResolvers)
+const resolvers = mergedResolvers
 
 
 
 const apollo = new ApolloServer({
-    typeDefs,
-    resolvers
+  typeDefs,
+  resolvers
 })
 
 
@@ -74,5 +45,7 @@ createConnection({
 
 
 app.listen(4000, () => {
-  logger.info('Express server started on port: 4000' );
+  logger.info('Express server started on port: 4000');
 });
+
+

@@ -5,7 +5,7 @@
         
   }
   type Query {
-    user(id: ID!): [User]
+    getUser(id: ID!): [User]
   }
   type Status{
     statusCode: Int
