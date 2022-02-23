@@ -29,6 +29,18 @@ router.post('/User', async (req: Request, res: Response) => {
   res.status(OK).json({ "users": users });
 });
 
+
+router.put('/update', async (req: Request, res: Response) => {
+  let user = new User();
+  user.id = req.body.user.id; 
+  user.email = req.body.user.email;
+  user.name = req.body.user.name; 
+  console.log(user)
+  await Mutation.updateUser(user)
+  res.status(OK).json({});
+});
+
+
 router.post('/add', async (req: Request, res: Response) => {  
   console.log(req.body);
   let user = new User();

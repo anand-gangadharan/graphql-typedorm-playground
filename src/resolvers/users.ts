@@ -7,6 +7,11 @@ const createUser = async function (args:any) {
     return user
 }
 
+const updateUser = async function (args:any) {   
+    const user = await UpdateUser(args);    
+    return user
+}
+
 const getUser = async function (root: any, args: any, context: any) {    
     // eslint-disable-next-line max-len
     const res = await getEntityManager().find(User, { _en: "user" }, { queryIndex: 'GSI1', keyCondition: { BEGINS_WITH: 'USER#'}})    
@@ -33,7 +38,7 @@ export const Query = {
 }
 
 export const Mutation = {
-    createUser, deleteUser
+    createUser, deleteUser, updateUser
 }
 
 async function CreateUser(input:any) {
@@ -44,6 +49,19 @@ async function CreateUser(input:any) {
     return response;
 }
 
+async function UpdateUser(input:any) {
+    console.log("resolver calling db")
+    console.log(input)
+    const user = new User();    
+    user.name = input.name;
+    user.email = input.email;
+    user.id = input.id;
+    console.log(user.name)
+    // eslint-disable-next-line max-len
+    const response = await getEntityManager().update(User, {id: user.id, name: user.name}, {email:input.email})
+    return response;
+}
+
 
 async function DeleteUser(input:any) {     
     const user = new User();    
@@ -51,6 +69,9 @@ async function DeleteUser(input:any) {
     await getEntityManager().delete(User, { id:input.id, name:input.name, email:input.email})
     console.log("deleted")  
 }
+
+
+
   
 
 

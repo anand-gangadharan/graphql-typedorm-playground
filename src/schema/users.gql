@@ -9,9 +9,6 @@
     getOneUser(id: ID!): [User]
   }
 
-
-
-
   type Status{
     statusCode: Int
     statusMessage: String
@@ -24,8 +21,8 @@
   }   
 
   type Mutation{
-    createUser(input: InputUser!): User! 
-    updateUser(input: InputUser!): Status!
+    createUser(input: InputUser!): User!    
     deleteUser(input: InputUser!): Status!
+    updateUser(input: InputUser!): User!
   }
   
