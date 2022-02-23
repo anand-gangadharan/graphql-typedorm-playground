@@ -2,10 +2,11 @@
  *                          Fetch and display users
  ******************************************************************************/
 
+
 displayUsers();
 
 
-function displayUsers() {    
+function displayUsers() {      
     httpGet('/api/users/allUser')
         .then(response => (response.json()))
         .then((response) => {    
@@ -104,6 +105,7 @@ function addUser() {
     };
     httpPost('/api/users/add', data)
         .then(() => {
+            console.log("Added")
             displayUsers();
         })
 }
@@ -198,10 +200,29 @@ function submitEdit(ele) {
 }
 
 
-function deleteUser(ele) {
-    var id = ele.getAttribute('data-user-id');
-    httpDelete('/api/users/delete/' + id)
-        .then(() => {
+async function deleteUser(ele) {
+    var user_id = ele.getAttribute('data-user-id');
+    var User;
+    var data = {
+        user: {            
+            id: user_id,
+            name:"",
+            email:"",
+        }
+    };
+    console.log(data)
+    await httpPost('/api/users/User', data)
+        .then(response => (response.json()))
+        .then((response) => {                         
+            User = response.users[0];            
+            console.log(response.users[0].name)        
+    
+        })    
+    data.user.name = User.name;
+    data.user.email = User.email;  
+    httpDelete('/api/users/delete', data)
+        .then(() => { 
+            console.log("deleted")
             displayUsers();
         })
 }
@@ -222,8 +243,8 @@ function httpPut(path, data) {
 }
 
 
-function httpDelete(path) {
-    return fetch(path, getOptions('DELETE'));
+function httpDelete(path, data) {
+    return fetch(path, getOptions('DELETE', data));
 }
 
 

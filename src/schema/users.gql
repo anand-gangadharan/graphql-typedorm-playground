@@ -6,13 +6,19 @@
   }
   type Query {
     getUser(id: ID!): [User]
+    getOneUser(id: ID!): [User]
   }
+
+
+
+
   type Status{
     statusCode: Int
     statusMessage: String
   }
 
-  input InputUser{    
+  input InputUser{ 
+    id: String   
     name: String
     email: String 
   }   
@@ -20,5 +26,6 @@
   type Mutation{
     createUser(input: InputUser!): User! 
     updateUser(input: InputUser!): Status!
-    deleteInUser(input: InputUser!): Status!
+    deleteUser(input: InputUser!): Status!
   }
+  
