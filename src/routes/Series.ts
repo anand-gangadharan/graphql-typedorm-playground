@@ -2,8 +2,8 @@ import StatusCodes from 'http-status-codes';
 import { Request, Response, Router } from 'express';
 import User from '../entities/UserEntity';
 import { getEntityManager } from '@typedorm/core';
-import Series from '@entities/Series';
-import Program from '@entities/Program';
+import Series from '../entities/Series';
+import Program from '../entities/Program';
 
 
 const router = Router();

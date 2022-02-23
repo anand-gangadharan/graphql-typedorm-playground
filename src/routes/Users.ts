@@ -2,7 +2,6 @@ import StatusCodes from 'http-status-codes';
 import { Request, Response, Router } from 'express';
 import User from '../entities/UserEntity';
 import { getEntityManager } from '@typedorm/core';
-import logger from '@shared/Logger';
 
 
 //import { createConnection, getRepository } from '@typedorm/common';

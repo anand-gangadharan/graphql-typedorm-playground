@@ -1,7 +1,7 @@
 /* eslint-disable no-var */
 import './pre-start'; // Must be the first import
-import app from '@server';
-import logger from '@shared/Logger';
+import app from './Server';
+import logger from './shared/Logger';
 import { createConnection } from '@typedorm/core';
 import { dynamoDBSampleAppTable } from './table'
 import mergedResolvers from './resolvers'
@@ -9,7 +9,7 @@ import mergedResolvers from './resolvers'
 import path from 'path';
 import { ApolloError, ApolloServer, gql } from "apollo-server";
 import schema from './schema';
-
+import { makeExecutableSchema } from "graphql-tools";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 var AWS = require('aws-sdk');
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -23,10 +23,22 @@ const typeDefs = schema;
 console.log(mergedResolvers)
 const resolvers = mergedResolvers
 
-
+const executableSchema = makeExecutableSchema({
+  resolverValidationOptions: {
+    requireResolversForArgs: false,
+    requireResolversForNonScalar: false,
+    requireResolversForAllFields: false,
+    requireResolversForResolveType: false,
+    allowResolversNotInSchema: true,
+  },
+  allowUndefinedInResolve: true,
+  inheritResolversFromInterfaces: true,
+  resolvers,
+  typeDefs: schema
+});
 
 const apollo = new ApolloServer({
-  typeDefs,
+  schema: executableSchema,
   resolvers
 })
 

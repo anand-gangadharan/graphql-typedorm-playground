@@ -1,3 +1,7 @@
+extend type Query {
+    getKCPInfo(id: ID!): [KCPInfo]
+}
+
 type KCPInfo{
   contentId:String
   doc_type:String
@@ -11,7 +15,4 @@ type KCPInfo{
   progress:String
   success:Boolean
 
-}
-type Query {
-    getKCPInfo(id: ID!): [KCPInfo]
 }

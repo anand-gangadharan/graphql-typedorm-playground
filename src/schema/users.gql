@@ -4,7 +4,7 @@
     email:String
         
   }
-  type Query {
+ extend type Query {
     getUser(id: ID!): [User]
   }
   type Status{
@@ -17,7 +17,7 @@
     email: String 
   }   
 
-  type Mutation{
+ extend type Mutation{
     createUser(input: InputUser!): User! 
     updateUser(input: InputUser!): Status!
     deleteInUser(input: InputUser!): Status!
