@@ -1,0 +1,24 @@
+type Like {
+    userId:String
+    doc_type:String
+    contentId:String
+}
+
+input UserLike {
+    contentId:String
+    userId:String
+}
+
+type LikeStatus{
+    statusCode: Int
+    statusMessage: String
+  }
+
+extend type Mutation{
+    likeContent(input: UserLike!): Like!
+    unlikeContent(input:UserLike!): LikeStatus!
+}
+
+extend type Query {
+    userLikes:[Like!]
+}

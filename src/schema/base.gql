@@ -1,0 +1,62 @@
+scalar Date
+scalar Time
+scalar DateTime
+scalar Duration
+scalar JSON
+scalar LocalizedString
+scalar Upload
+
+directive @auth(
+  requires: [Role]
+) on FIELD_DEFINITION
+
+directive @intl(
+  locale: String
+) on FIELD_DEFINITION
+
+directive @adobeUser on FIELD_DEFINITION
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  placeholder: Int
+}
+
+type Mutation {
+  placeholder: Int
+}
+
+type PageInfo {
+  endCursor: String
+  limit: Int
+  offset: Int
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+enum Role {
+  ADMIN
+  USER
+  GUEST
+}
+
+enum AvailabilityStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum Platform {
+  WEB
+  ANDROID
+  IOS
+  ANDROIDTV
+}
